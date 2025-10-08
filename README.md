@@ -4,16 +4,16 @@ A decentralized yield farming protocol featuring automatic reward claiming on st
 
 ## ✨ Features
 
-🏊 **Multi-Pool Support**: create and manage multiple yield farming pools with different staking tokens and reward rates
-💰 **Auto-Claim on Stake**: automatically claim pending rewards when staking additional tokens
-💸 **Auto-Claim on Withdraw**: automatically claim pending rewards when withdrawing staked tokens
-🔄 **Manual Claim**: users can claim rewards at any time without staking or withdrawing
-📈 **Dynamic Reward Rates**: owner can adjust reward rates per pool after creation
-🛡️ **Safe Reward Transfer**: prevents reverts when pool has insufficient reward balance—transfers available balance instead
-🚨 **Emergency Withdrawal**: owner can rescue stuck tokens or ETH if needed
-⏱️ **Time-Based Rewards**: rewards accumulate based on time staked and reward rate per second
-🔍 **Query Functions**: external view functions to check pending rewards, active pools, and user balances
-🎯 **Unique Pool IDs**: each pool is identified by a unique bytes32 hash based on token, reward rate, timestamp, and chain ID
+- 🏊 **Multi-Pool Support**: create and manage multiple yield farming pools with different staking tokens and reward rates
+- 💰 **Auto-Claim on Stake**: automatically claim pending rewards when staking additional tokens
+- 💸 **Auto-Claim on Withdraw**: automatically claim pending rewards when withdrawing staked tokens
+- 🔄 **Manual Claim**: users can claim rewards at any time without staking or withdrawing
+- 📈 **Dynamic Reward Rates**: owner can adjust reward rates per pool after creation
+- 🛡️ **Safe Reward Transfer**: prevents reverts when pool has insufficient reward balance—transfers available balance instead
+- 🚨 **Emergency Withdrawal**: owner can rescue stuck tokens or ETH if needed
+- ⏱️ **Time-Based Rewards**: rewards accumulate based on time staked and reward rate per second
+- 🔍 **Query Functions**: external view functions to check pending rewards, active pools, and user balances
+- 🎯 **Unique Pool IDs**: each pool is identified by a unique bytes32 hash based on token, reward rate, timestamp, and chain ID
 
 ## 🔐 Security Measures and Patterns
 
