@@ -151,32 +151,23 @@ contract YieldFarming is Ownable, ReentrancyGuard {
     function withdraw(bytes32 poolId, uint256 amount) external nonReentrant {
         Pool storage pool = pools[poolId];
         UserInfo storage user = userInfo[poolId][msg.sender];
-        // Comprobar que solo retiramos nuestros tokens
-        require(amount <= user.amount, "Insufficient balance"); // Sería mejor con = ? Es decir que la cantidad que quiere retirar el sender es la misma que la que tiene
-
-        // Actualizamos la pool
+        require(amount <= user.amount, "Insufficient balance");
         _updatePool(poolId);
 
-        // Calculamos los rewards que nos tocan. Si hay pending rewards los transferimos + evento
         uint256 pending = _calculatePendingRewards(poolId, msg.sender);
         if(pending > 0) {
             _safeRewardTransfer(msg.sender, pending);
-            // rewardToken.transfer(msg.sender, pending);
             emit RewardClaimed(poolId, msg.sender, pending);
         }
 
-        // Actualizamos los objetos de Pool y User
         user.amount -= amount;
         user.rewardDebt = user.amount * pool.rewardPerTokenStored / 1e18;
         pool.totalStaked -= amount;
-        // Transferimos + evento
+        
         IERC20(pool.token).safeTransfer(msg.sender, amount);
         emit Withdrawn(poolId, msg.sender, amount);
     }
 
-
-    // mapping(bytes32 => Pool) public pools;   struct Pool { address token; uint256 totalStaked; uint256 rewardRate; uint256 lastUpdateTime; uint256 rewardPerTokenStored; bool isActive; }
-    // mapping(bytes32 => mapping(address => UserInfo)) public userInfo; struct UserInfo { uint256 amount; uint256 rewardDebt;uint256 lastClaimTime; }
     /**
      * @dev Claim pending rewards
      * @param poolId Pool identifier
